@@ -25,11 +25,11 @@ namespace gymit.Installers
             services.AddSingleton(jwtSettings);
 
             services.AddScoped<IIdentityService, IdentityService>();
-
+            // JwtSettings.Secret
             var tokenValidationParameters = new TokenValidationParameters
             {
                 ValidateIssuerSigningKey = true,
-                IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(jwtSettings.Secret)),
+                IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(configuration["JwtSecret:Secret"])),
                 ValidateIssuer = false,
                 ValidateAudience = false,
                 RequireExpirationTime = false,
