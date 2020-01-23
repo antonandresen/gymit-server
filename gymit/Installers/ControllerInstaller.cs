@@ -29,7 +29,7 @@ namespace gymit.Installers
             var tokenValidationParameters = new TokenValidationParameters
             {
                 ValidateIssuerSigningKey = true,
-                IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(configuration["JwtSecret:Secret"])),
+                IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(configuration["JwtSettings:Secret"])),
                 ValidateIssuer = false,
                 ValidateAudience = false,
                 RequireExpirationTime = false,
