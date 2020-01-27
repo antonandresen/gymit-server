@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29519.87
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "gymit", "gymit\gymit.csproj", "{B63E232C-1DA3-44BF-B200-26B3F5DDF455}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "gymit", "gymit\gymit.csproj", "{B63E232C-1DA3-44BF-B200-26B3F5DDF455}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "gymit.IntegrationTests", "gymit.IntegrationTests\gymit.IntegrationTests.csproj", "{68B82090-6AB5-4939-A41A-24DA318031EE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{B63E232C-1DA3-44BF-B200-26B3F5DDF455}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B63E232C-1DA3-44BF-B200-26B3F5DDF455}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B63E232C-1DA3-44BF-B200-26B3F5DDF455}.Release|Any CPU.Build.0 = Release|Any CPU
+		{68B82090-6AB5-4939-A41A-24DA318031EE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{68B82090-6AB5-4939-A41A-24DA318031EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{68B82090-6AB5-4939-A41A-24DA318031EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{68B82090-6AB5-4939-A41A-24DA318031EE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

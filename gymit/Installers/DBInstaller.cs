@@ -14,7 +14,7 @@ namespace gymit.Installers
         public void InstallServices(IServiceCollection services, IConfiguration configuration)
         {
             services.AddDbContext<DataContext>
-                (opt => opt.UseSqlServer(configuration["Data:GymitAPIConnection:ConnectionString"]));
+                (opt => opt.UseSqlServer(configuration["DBConnectionString"]));
             services.AddDefaultIdentity<IdentityUser>()
                 .AddEntityFrameworkStores<DataContext>();
 

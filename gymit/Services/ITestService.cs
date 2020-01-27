@@ -15,5 +15,6 @@ namespace gymit.Services
         Task<bool> UpdateTestAsync(Test testToUpdate);
         Task<bool> DeleteTestAsync(Guid testID);
         Task<bool> UserOwnsTestAsync(Guid testID, string userID);
+        Task<List<Tag>> GetAllTagsAsync();
     }
 }

@@ -16,7 +16,10 @@ namespace gymit.Models
         public int Number { get; set; }
         public string Text { get; set; }
         public string UserId { get; set; }
+
         [ForeignKey(nameof(UserId))]
         public IdentityUser User { get; set; }
+
+        public virtual List<TestTag> Tags { get; set; }
     }
 }

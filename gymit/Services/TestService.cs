@@ -20,7 +20,8 @@ namespace gymit.Services
         }
         public async Task<List<Test>> GetTestsAsync()
         {
-            return await _dataContext.Tests.ToListAsync();
+            var queryable = _dataContext.Tests.AsQueryable();
+            return await queryable.Include(x => x.Tags).ToListAsync(); 
         }
 
         public async Task<Test> GetTestByIDAsync(Guid testID)
@@ -30,7 +31,11 @@ namespace gymit.Services
 
         public async Task<bool> CreateTestAsync(Test test)
         {
+            test.Tags?.ForEach(tag => tag.TagName = tag.TagName.ToLower());
+
+            await AddNewTags(test);
             await _dataContext.Tests.AddAsync(test);
+
             var created = await _dataContext.SaveChangesAsync();
             return created > 0;
         }
@@ -66,6 +71,26 @@ namespace gymit.Services
             }
 
             return true;
+        }
+
+        public async Task<List<Tag>> GetAllTagsAsync()
+        {
+            return await _dataContext.Tags.AsNoTracking().ToListAsync();
+        }
+
+        private async Task AddNewTags(Test test)
+        {
+            foreach (var tag in test.Tags)
+            {
+                var existingTag =
+                    await _dataContext.Tags.SingleOrDefaultAsync(x =>
+                        x.Name == tag.TagName);
+                if (existingTag != null)
+                    continue;
+
+                await _dataContext.Tags.AddAsync(new Tag
+                { Name = tag.TagName, CreatedOn = DateTime.UtcNow, CreatorId = test.UserId });
+            }
         }
     }
 }

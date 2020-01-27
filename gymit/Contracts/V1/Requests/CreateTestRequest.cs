@@ -9,5 +9,6 @@ namespace gymit.Contracts.V1.Requests
     {
         public int Number { get; set; }
         public string Text { get; set; }
+        public IEnumerable<string> Tags { get; set; }
     }
 }

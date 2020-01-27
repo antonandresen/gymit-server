@@ -50,9 +50,11 @@ namespace gymit.Controllers.V1
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] CreateTestRequest testRequest)
         {
+            var newTestId = Guid.NewGuid();
             var test = new Test { 
                 Number = testRequest.Number, 
                 Text = testRequest.Text,
+                Tags = testRequest.Tags.Select(x => new TestTag { TestId = newTestId, TagName = x }).ToList(),
                 Date = DateTime.Now,
                 UserId = HttpContext.GetUserId()
             };

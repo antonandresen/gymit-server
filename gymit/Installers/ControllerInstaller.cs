@@ -29,7 +29,7 @@ namespace gymit.Installers
             var tokenValidationParameters = new TokenValidationParameters
             {
                 ValidateIssuerSigningKey = true,
-                IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(configuration["JwtSettings:Secret"])),
+                IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(configuration["JwtSecret"])),
                 ValidateIssuer = false,
                 ValidateAudience = false,
                 RequireExpirationTime = false,
@@ -44,11 +44,16 @@ namespace gymit.Installers
                 opt.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
                 opt.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
             })
-                .AddJwtBearer(opt =>
-                {
-                    opt.SaveToken = true;
-                    opt.TokenValidationParameters = tokenValidationParameters;
-                });
+            .AddJwtBearer(opt =>
+            {
+                opt.SaveToken = true;
+                opt.TokenValidationParameters = tokenValidationParameters;
+            });
+
+            services.AddAuthorization(opt => 
+            {
+                opt.AddPolicy("TagViewer", builder => builder.RequireClaim("tags.view", "true"));
+            });
         }
     }
 }
